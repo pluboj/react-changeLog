@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 
 class App extends Component {
-  render() {
 
+  render() {
     return (
       <div className='display'>
         <h1>{this.props.title}</h1>
@@ -14,6 +14,11 @@ class App extends Component {
       </div>
     );
   }
+}
+
+App.defaultProps = {
+  headings: ['Updated', 'Member', 'Description'],
+  title: 'Change Log'
 }
 
 class Heading extends Component {

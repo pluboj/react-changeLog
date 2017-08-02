@@ -4,8 +4,6 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
-const title = 'Change Log';
-const headings = ['Updated', 'Member', 'Description'];
 const data = [
     {
       'time':'2 minutes ago',
@@ -27,8 +25,6 @@ const data = [
 
 ReactDOM.render(
 	<App 
-		title={title}
-		headings={headings}
 		data={data}
 	/>, document.getElementById('root'));
 registerServiceWorker();
