@@ -7,10 +7,10 @@ class App extends Component {
     return (
       <div className='display'>
         <h1>{this.props.title}</h1>
-        <table>
+        <ChangeLogTable>
           <Headings headings={this.props.headings}/>
           <Rows rows={this.props.data}/>
-        </table>
+        </ChangeLogTable>
       </div>
     );
   }
@@ -60,6 +60,16 @@ class Rows extends Component {
     ))
 
     return(<tbody>{rows}</tbody>)
+  }
+}
+
+class ChangeLogTable extends Component {
+  render() {
+    return(
+      <table>
+        {this.props.children}
+      </table>
+    )
   }
 }
 
