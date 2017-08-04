@@ -20,6 +20,11 @@ const data = [
       'member':'Mike',
       'desc':'Created new account'
     },
+    {
+      'time':'2 hours ago',
+      'member':'Jenna',
+      'desc':'Updated title'
+    },
     ];
 
 
