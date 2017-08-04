@@ -25,6 +25,5 @@ const data = [
 
 ReactDOM.render(
 	<App 
-		data={data}
 	/>, document.getElementById('root'));
 registerServiceWorker();

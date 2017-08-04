@@ -1,7 +1,35 @@
 import React, { Component } from 'react';
 import './App.css';
+import $ from 'jquery'; 
 
 class App extends Component {
+  state = {
+    dataSet: [],
+  };
+
+  mapOLData = function (data) {
+    return data.map(function (change, index) {
+      const time = change.timestamp.split('T');
+      const time_d = time[0] + ' @' + time[1].substr(0,8);
+      return {
+        'time': time_d,
+        'member': change.author.key.split('/').pop(),
+        'desc': change.comment
+      }
+    });
+  }
+
+  componentDidMount = () => (
+    $.ajax({
+      url: 'http://openlibrary.org/recentchanges.json?limit=12',
+      context: this,
+      dataType: 'json',
+      type: 'GET'
+    }).done(function (data) {
+      const dataSet = this.mapOLData(data);
+      this.setState({dataSet: dataSet});
+    })
+  )
 
   render() {
     return (
@@ -9,7 +37,7 @@ class App extends Component {
         <h1>{this.props.title}</h1>
         <ChangeLogTable>
           <Headings headings={this.props.headings}/>
-          <Rows rows={this.props.data}/>
+          <Rows rows={this.state.dataSet}/>
         </ChangeLogTable>
       </div>
     );
@@ -32,7 +60,7 @@ class Headings extends Component {
     const headings = this.props.headings.map((heading,index) => (
       <Heading 
         heading={heading} 
-        key={index}
+        key={'heading-'+index}
       />
     ))
     return (
@@ -60,7 +88,7 @@ class Rows extends Component {
     const rows = this.props.rows.map((row, index) => (
       <Row 
         row={row} 
-        key={index}
+        key={'row-'+index}
       />
     ))
 
